@@ -4,6 +4,7 @@
   "description": "",
   "license": "ISC",
   "author": "Louie Soriano",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",

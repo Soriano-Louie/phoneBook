@@ -1,5 +1,9 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
@@ -69,11 +73,11 @@ app.get("*", (req, res) => {
 });
 
 // ✅ React Router fallback (for SPA routing)
-// const unknownEndpoint = (request, response) => {
-//   response.status(404).send({ error: "unknown endpoint" });
-// };
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: "unknown endpoint" });
+};
 
-// app.use(unknownEndpoint);
+app.use(unknownEndpoint);
 
 // ✅ Start server
 const PORT = process.env.PORT || 3001;
