@@ -69,11 +69,11 @@ app.get("*", (req, res) => {
 });
 
 // ✅ React Router fallback (for SPA routing)
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
-};
+// const unknownEndpoint = (request, response) => {
+//   response.status(404).send({ error: "unknown endpoint" });
+// };
 
-app.use(unknownEndpoint);
+// app.use(unknownEndpoint);
 
 // ✅ Start server
 const PORT = process.env.PORT || 3001;
