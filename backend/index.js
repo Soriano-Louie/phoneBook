@@ -2,11 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
-app.use(express.static("dist"));
 app.use(express.json());
-
-// 👉 Serve static files from React frontend build
-app.use(express.static(path.join(__dirname, "dist")));
 
 let persons = [
   { id: "1", name: "Arto Hellas", number: "040-123456" },
