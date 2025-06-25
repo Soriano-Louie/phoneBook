@@ -61,6 +61,11 @@ app.put("/api/persons/:id", (req, res) => {
   res.json(updatedPerson);
 });
 
+// ✅ Fallback to index.html for React Router
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "dist", "index.html"));
+});
+
 // ✅ React Router fallback (for SPA routing)
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });
