@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 // 👉 Serve static files from React frontend build
-app.use(express.static(path.join(__dirname, "dist")));
+app.use(express.static(path.join(__dirname, "../dist")));
 
 let persons = [
   { id: "1", name: "Arto Hellas", number: "040-123456" },
@@ -65,7 +65,7 @@ app.put("/api/persons/:id", (req, res) => {
 
 // ✅ Fallback to index.html for React Router
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
 // ✅ React Router fallback (for SPA routing)
