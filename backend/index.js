@@ -12,7 +12,8 @@ let persons = [
 app.use(express.json());
 
 // 👉 Serve static files from React frontend build
-app.use(express.static(path.join(__dirname, "../dist")));
+// ✅ Serve Vite's build output (React app)
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 // ✅ GET all
 app.get("/api/persons", (req, res) => res.json(persons));
@@ -63,17 +64,10 @@ app.put("/api/persons/:id", (req, res) => {
   res.json(updatedPerson);
 });
 
-// ✅ Fallback to index.html for React Router
+// ✅ Fallback to index.html for React Router (must be last)
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist", "index.html"));
+  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
 });
-
-//✅ React Router fallback (for SPA routing)
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
-};
-
-app.use(unknownEndpoint);
 
 // ✅ Start server
 const PORT = process.env.PORT || 3001;
