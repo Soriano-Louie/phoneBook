@@ -68,6 +68,13 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
+//✅ React Router fallback (for SPA routing)
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: "unknown endpoint" });
+};
+
+app.use(unknownEndpoint);
+
 // ✅ Start server
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
