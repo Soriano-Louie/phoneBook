@@ -1,15 +1,5 @@
-import express from "express";
-import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+const express = require("express");
 const app = express();
-app.use(express.json());
-
-// 👉 Serve static files from React frontend build
-app.use(express.static(path.join(__dirname, "dist")));
 
 let persons = [
   { id: "1", name: "Arto Hellas", number: "040-123456" },
@@ -17,6 +7,10 @@ let persons = [
   { id: "3", name: "Dan Abramov", number: "12-43-234345" },
   { id: "4", name: "Mary Poppendieck", number: "39-23-6423122" },
 ];
+
+app.use(express.json());
+// 👉 Serve static files from React frontend build
+app.use(express.static(path.join(__dirname, "dist")));
 
 // ✅ GET all
 app.get("/api/persons", (req, res) => res.json(persons));
@@ -73,11 +67,11 @@ app.get("*", (req, res) => {
 });
 
 // ✅ React Router fallback (for SPA routing)
-const unknownEndpoint = (request, response) => {
-  response.status(404).send({ error: "unknown endpoint" });
-};
+// const unknownEndpoint = (request, response) => {
+//   response.status(404).send({ error: "unknown endpoint" });
+// };
 
-app.use(unknownEndpoint);
+// app.use(unknownEndpoint);
 
 // ✅ Start server
 const PORT = process.env.PORT || 3001;
