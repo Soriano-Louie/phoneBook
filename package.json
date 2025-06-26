@@ -1,0 +1,17 @@
+{
+  "name": "phonebook-fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack PhoneBook application",
+  "author": "Louie Soriano",
+  "license": "ISC",
+  "scripts": {
+    "start": "cd backend && npm start",
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend && npm install",
+    "build": "cd frontend && npm run build",
+    "postinstall": "npm run install-backend"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
