@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");
 const app = express();
 
 let persons = [
@@ -66,7 +67,17 @@ app.put("/api/persons/:id", (req, res) => {
 
 // ✅ Fallback to index.html for React Router (must be last)
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist", "index.html"));
+  const indexPath = path.join(__dirname, "../frontend/dist", "index.html");
+  
+  // Check if the file exists
+  if (fs.existsSync(indexPath)) {
+    res.sendFile(indexPath);
+  } else {
+    // Fallback response if build files don't exist
+    res.status(404).json({ 
+      error: "Frontend build not found. Please build the frontend first." 
+    });
+  }
 });
 
 // ✅ Start server
