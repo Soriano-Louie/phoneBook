@@ -62,18 +62,25 @@ const App = () => {
         number: newNum,
       };
 
-      personService.create(personObject).then((newName) => {
-        // console.log(newName);
-        console.log("New Person from Backend:", newName);
-        setPersons(persons.concat(newName));
-        setNewName("");
-        setNum("");
-        setSuccessMessage(`Added '${personObject.name}'`);
-        console.log(`Added '${personObject.name}'`);
-        setTimeout(() => {
-          setSuccessMessage(null);
-        }, 3000);
-      });
+      personService
+        .create(personObject)
+        .then((newName) => {
+          // console.log(newName);
+          console.log("New Person from Backend:", newName);
+          setPersons(persons.concat(newName));
+          setNewName("");
+          setNum("");
+          setSuccessMessage(`Added '${personObject.name}'`);
+          console.log(`Added '${personObject.name}'`);
+          setTimeout(() => {
+            setSuccessMessage(null);
+          }, 3000);
+        })
+        .catch((error) => {
+          //access the error mesage
+          console.log(error.response.data.error);
+          setSuccessMessage(error.response.data.error);
+        });
     }
   };
 
