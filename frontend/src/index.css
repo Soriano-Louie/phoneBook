@@ -35,6 +35,10 @@ h1 {
   line-height: 1.1;
 }
 
+.addButton {
+  background-color: rgb(51, 255, 0);
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -42,7 +46,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #ff0000;
   cursor: pointer;
   transition: border-color 0.25s;
 }

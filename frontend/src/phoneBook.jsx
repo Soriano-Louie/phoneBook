@@ -51,6 +51,8 @@ const App = () => {
           console.log(newNum);
           console.log(id);
           setPersons(persons.map((per) => (per.id === id ? returnedNum : per)));
+          setNewName("");
+          setNum("");
         });
       }
       return;
@@ -67,6 +69,7 @@ const App = () => {
         setNewName("");
         setNum("");
         setSuccessMessage(`Added '${personObject.name}'`);
+        console.log(`Added '${personObject.name}'`);
         setTimeout(() => {
           setSuccessMessage(null);
         }, 3000);
@@ -154,7 +157,9 @@ const App = () => {
           number: <input value={newNum} onChange={handleNumChange} />
         </div>
         <div>
-          <button type="submit">add</button>
+          <button type="submit" className="addButton">
+            Add
+          </button>
         </div>
       </form>
       <h2>Numbers</h2>
